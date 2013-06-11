@@ -1,4 +1,4 @@
 porcupine
 =========
 
-Emulates an mailer receiver.
+Emulates a mailer receiver.
