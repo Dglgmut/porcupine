@@ -6,13 +6,14 @@ class Porcupine
       self.new.start
     end
 
-    def self.new
+    def self.new(*arg)
       super(1)
     end
 
-    def start
+    def start(*arg)
       @started = true
       return self
     end
   end
+
 end

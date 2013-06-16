@@ -1,6 +1,8 @@
 require 'test/unit'
+require 'debugger'
 require 'porcupine'
 require 'net/smtp'
+require 'action_mailer'
 
 class PorcupineTest < Test::Unit::TestCase
   def test_initialize
@@ -14,5 +16,10 @@ class PorcupineTest < Test::Unit::TestCase
     end
     n = Net::SMTP.new()
     assert_equal n.start.started?, true
+  end
+
+  def test_action_mailer_sending_to_the_mail_array
+    debugger
+    ActionMailer::Base.mail(:from => "me@example.com", :to => "you@example.com", :subject => "test", :body => "test").deliver
   end
 end
