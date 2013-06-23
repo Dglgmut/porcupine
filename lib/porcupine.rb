@@ -1,6 +1,6 @@
 require 'net/smtp'
 
-class Porcupine
+module Porcupine
   Net::SMTP.class_eval do
     def self.start
       self.new.start
@@ -16,4 +16,10 @@ class Porcupine
     end
   end
 
+  class Wrapper
+  end
+
+  class Array
+
+  end
 end

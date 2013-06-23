@@ -6,8 +6,10 @@ require 'action_mailer'
 
 class PorcupineTest < Test::Unit::TestCase
   def test_initialize
-    assert_equal Porcupine,
-      Porcupine.new.class
+    assert_equal Porcupine::Array,
+      Porcupine::Array.new.class
+    assert_equal Porcupine::Wrapper,
+      Porcupine::Wrapper.new.class
   end
 
   def test_stop_smtp_sending
@@ -19,7 +21,6 @@ class PorcupineTest < Test::Unit::TestCase
   end
 
   def test_action_mailer_sending_to_the_mail_array
-    debugger
-    ActionMailer::Base.mail(:from => "me@example.com", :to => "you@example.com", :subject => "test", :body => "test").deliver
+    ActionMailer::Base.mail(:from => "me@example.com", :to => "florez.renan@gmail.com", :subject => "test", :body => "test").deliver
   end
 end
