@@ -9,7 +9,7 @@ class PorcupineTest < Test::Unit::TestCase
     assert_equal Porcupine::Array,
       Porcupine::Array.new.class
     assert_equal Porcupine::Wrapper,
-      Porcupine::Wrapper.new.class
+      Porcupine::Wrapper.new{}.class
   end
 
   def test_stop_smtp_sending
@@ -21,6 +21,11 @@ class PorcupineTest < Test::Unit::TestCase
   end
 
   def test_action_mailer_sending_to_the_mail_array
-    ActionMailer::Base.mail(:from => "me@example.com", :to => "florez.renan@gmail.com", :subject => "test", :body => "test").deliver
+    Porcupine::Wrapper.new do
+      ActionMailer::Base.mail(:from => "me@example.com",
+                              :to => "florez.renan@gmail.com",
+                              :subject => "test",
+                              :body => "test").deliver
+    end
   end
 end

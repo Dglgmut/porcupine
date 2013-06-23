@@ -17,9 +17,11 @@ module Porcupine
   end
 
   class Wrapper
+    def initialize
+      yield
+    end
   end
 
   class Array
-
   end
 end
