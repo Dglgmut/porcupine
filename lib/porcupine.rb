@@ -1,27 +1,27 @@
 require 'net/smtp'
 
 module Porcupine
+  @@mail_queue = []
+
   Net::SMTP.class_eval do
-    def self.start
-      self.new.start
-    end
-
-    def self.new(*arg)
-      super(1)
-    end
-
-    def start(*arg)
+    def start *args
       @started = true
       return self
     end
-  end
 
-  class Wrapper
-    def initialize
-      yield
+    def send_message(msgstr, from_addr, to_addrs)
+      Porcupine::MailQueue << {msgstr: msgstr, from_addr: from_addr, to_addrs: to_addrs}
     end
   end
 
-  class Array
+  class MailQueue
+    @@queue = []
+    def self.<<(x)
+      @@queue << x
+    end
+
+    def self.content
+      @@queue
+    end
   end
 end
